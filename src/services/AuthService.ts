@@ -12,7 +12,9 @@ export async function login(email: string, password: string): Promise<boolean> {
             password,
         });
 
-        const token: string = response.data.token;
+        const auth_token: string = response.data.token;
+        const separatorIndex = auth_token.indexOf("|");
+        const token = auth_token.substring(separatorIndex + 1);
         const expiration = Date.now() + 3600 * 1000; // One hour expiration time
 
         localStorage.setItem(TOKEN_KEY, token);

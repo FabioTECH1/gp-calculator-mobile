@@ -15,18 +15,20 @@ const routes: Array<RouteRecordRaw> = [
     path: '/login',
     name: 'Login',
     component: () => LoginVue,
-    // meta: { isGuest: true },
+    meta: { isGuest: true },
 
   },
   {
     path: '/register',
     name: 'Register',
-    component: () => RegisterVue
+    component: () => RegisterVue,
+    meta: { isGuest: true },
   },
   {
     path: '/forget-password',
     name: 'ForgetPassword',
-    component: () => ForgetPasswordVue
+    component: () => ForgetPasswordVue,
+    meta: { isGuest: true },
   },
   {
     path: '/home',
@@ -42,18 +44,17 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log('here');
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (!isAuthenticated()) {
       next({ name: 'Login' });
-    } else {
-      next();
-    }
-    // } else if (to.matched.some((record) => record.meta.isGuest)) {
-    //   next({ name: 'Home' });
-  } else {
-    next();
-  }
+    } else next();
+
+  } else if (to.matched.some((record) => record.meta.isGuest)) {
+    if (isAuthenticated()) {
+      next({ name: 'Home' });
+    } else next();
+
+  } else next();
 });
 
 export default router;

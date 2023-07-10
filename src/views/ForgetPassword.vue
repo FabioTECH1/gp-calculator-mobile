@@ -54,17 +54,3 @@ export default defineComponent({
 
 });
 </script>
-<style>
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 88%
-}
-
-ion-input.text-white {
-  --background: rgba(54, 54, 243, 0.986);
-  --border-color: rgb(54, 54, 243, 0.986);
-}
-</style>
