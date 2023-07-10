@@ -1,39 +1,59 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
-import TabsPage from '../views/TabsPage.vue'
+import LoginVue from '@/views/Login.vue';
+import RegisterVue from '@/views/Register.vue';
+import ForgetPasswordVue from '@/views/ForgetPassword.vue';
+import HomeVue from '@/views/Home.vue';
+import { isAuthenticated } from '@/services/AuthService';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/tabs/tab1'
+    redirect: '/login'
   },
   {
-    path: '/tabs/',
-    component: TabsPage,
-    children: [
-      {
-        path: '',
-        redirect: '/tabs/tab1'
-      },
-      {
-        path: 'tab1',
-        component: () => import('@/views/Tab1Page.vue')
-      },
-      {
-        path: 'tab2',
-        component: () => import('@/views/Tab2Page.vue')
-      },
-      {
-        path: 'tab3',
-        component: () => import('@/views/Tab3Page.vue')
-      }
-    ]
+    path: '/login',
+    name: 'Login',
+    component: () => LoginVue,
+    // meta: { isGuest: true },
+
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: () => RegisterVue
+  },
+  {
+    path: '/forget-password',
+    name: 'ForgetPassword',
+    component: () => ForgetPasswordVue
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: () => HomeVue,
+    meta: { requiresAuth: true },
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes
-})
+});
 
-export default router
+router.beforeEach((to, from, next) => {
+  console.log('here');
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (!isAuthenticated()) {
+      next({ name: 'Login' });
+    } else {
+      next();
+    }
+    // } else if (to.matched.some((record) => record.meta.isGuest)) {
+    //   next({ name: 'Home' });
+  } else {
+    next();
+  }
+});
+
+export default router;

@@ -23,10 +23,15 @@ import '@ionic/vue/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
+//bootstrap 
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap';
+
+
 const app = createApp(App)
   .use(IonicVue)
   .use(router);
-  
+
 router.isReady().then(() => {
   app.mount('#app');
 });
