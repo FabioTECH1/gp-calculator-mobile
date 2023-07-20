@@ -7,8 +7,8 @@
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
-    <ion-content class="ion-padding" style="--background:rgb(23, 23, 245);" fullscreen>
 
+    <ion-content class="ion-padding" style="--background:rgb(23, 23, 245);" fullscreen>
       <div class="container text-white">
         <h1><b>Forgot Password</b></h1>
         <ion-text style="--color:rgba(238, 232, 232, 0.911);">Enter your email address</ion-text>

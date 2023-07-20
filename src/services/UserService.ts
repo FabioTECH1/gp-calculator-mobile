@@ -1,12 +1,19 @@
 
 import axios from 'axios';
-const API_BASE_URL = 'https://hotel.fottify.com/api';
+const API_BASE_URL = 'http://127.0.0.1:8000/api';
 const TOKEN_KEY = 'token';
 
-export async function getUser(): Promise<void> {
+export interface IUser {
+    name: String;
+    role: String;
+    success: Boolean;
+}
+
+
+export async function getUser(): Promise<IUser> {
     const token = localStorage.getItem(TOKEN_KEY);
     try {
-        const response = await axios.post(`${API_BASE_URL}/get_user`, null, {
+        const response = await axios.get(`${API_BASE_URL}/get_user`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -15,7 +22,8 @@ export async function getUser(): Promise<void> {
         console.log(user);
         return user;
     } catch (error) {
-        console.error(error);
-    }
+        console.log(error);
+        return { name: "", role: "", success: false }
 
+    }
 }
