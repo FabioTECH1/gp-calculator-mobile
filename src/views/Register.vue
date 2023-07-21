@@ -1,8 +1,8 @@
 <template>
   <ion-page>
-    <ion-header style="--background:rgb(23, 23, 245);" color='primary' class="ion-no-border">
+    <ion-header color='primary' class="ion-no-border">
       <div v-if="currentView === 'second'">
-        <ion-toolbar style="--background:rgb(23, 23, 245);">
+        <ion-toolbar>
           <ion-buttons slot="start">
             <ion-back-button default-href="/register" class="text-white m-3" text=""
               @click="goToPreviousView"></ion-back-button>
@@ -10,7 +10,7 @@
         </ion-toolbar>
       </div>
     </ion-header>
-    <ion-content class="ion-padding" style="--background:rgb(23, 23, 245);" fullscreen>
+    <ion-content class="ion-padding" fullscreen>
       <div class="container">
         <div class="ion-text-center pb-4">
           <ion-icon :icon="personOutline" style="font-size: 200px;" class="text-white"></ion-icon>
@@ -63,6 +63,9 @@
               type="submit">
               <b>Submit</b>
             </ion-button>
+            <ion-loading :is-open="openLoader" message="Creating account.." duration="3000"
+              spinner="circles"></ion-loading>
+
           </div>
         </form>
 
@@ -103,6 +106,7 @@ export default defineComponent({
     let referral = ref('');
     let password = ref('');
     let showPassword = ref(false);
+    let openLoader = ref(false);
 
     const gotoPage = (page: string) => {
       console.log(page);
@@ -122,8 +126,10 @@ export default defineComponent({
     };
 
     const registerUser = async () => {
-      const success = await register(firstName.value, middleName.value, lastName.value, email.value, userName.value, referral.value, password.value);
-      if (success) {
+      openLoader.value = true
+      const response = await register(firstName.value, middleName.value, lastName.value, email.value, userName.value, referral.value, password.value);
+      openLoader.value = false
+      if (response) {
         console.log('otp sent');
         router.push({ name: 'VerifyOtp' });
 
@@ -156,6 +162,7 @@ export default defineComponent({
       toggleShowPassword,
       registerUser,
       areFieldsFilled,
+      openLoader
     };
   },
 });

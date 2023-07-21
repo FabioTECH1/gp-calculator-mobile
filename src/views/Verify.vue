@@ -1,14 +1,14 @@
 <template>
   <ion-page>
-    <ion-header style="--background:rgb(23, 23, 245);" color='primary' class="ion-no-border">
-      <ion-toolbar style="--background:rgb(23, 23, 245);">
+    <ion-header class="ion-no-border">
+      <ion-toolbar>
         <ion-buttons slot="start">
           <ion-back-button default-href="/login" class="text-white m-3" text=""></ion-back-button>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
 
-    <ion-content class="ion-padding" style="--background:rgb(23, 23, 245);">
+    <ion-content class="ion-padding">
       <div class="container text-white">
         <h1><b>Code from Email</b></h1>
         <ion-text>Enter the 6-digit we sent to your email</ion-text>
@@ -19,7 +19,10 @@
           </div>
           <ion-button expand="full" class="ion-margin-bottom mb-4" style="--background:rgb(32, 209, 32);" size="large"
             @click="verifyUser" :disabled="otp.length !== 6"><b>PROCEED</b></ion-button>
+          <ion-loading :is-open="openLoader" message="Verifying OTP.." duration="3000" spinner="circles"></ion-loading>
         </div>
+        <!-- <ion-toast :message="toastMessage" :is-open="showToast" @didDismiss="dismissToast()" :duration="1000"
+          position="bottom" color="danger" animated="true"></ion-toast> -->
         <ion-text v-if="countdown > 0">Did not receive the code?
           <b> Resend in {{ countdown }}s</b>
         </ion-text>
@@ -45,6 +48,7 @@ export default defineComponent({
     const router = useRouter();
     const countdown = ref(9);
     const otp = ref('');
+    const openLoader = ref(false);
 
 
     const gotoPage = (page: string) => {
@@ -69,9 +73,11 @@ export default defineComponent({
     }
 
     const verifyUser = async () => {
+      openLoader.value == true;
       console.log(otp.value.length);
       if (otp.value.length == 6) {
         const success = await verify(otp.value);
+        openLoader.value == false;
         if (success) {
           router.push({ name: 'Home' });
           console.log('Login successful');
@@ -96,6 +102,7 @@ export default defineComponent({
       handleOnChange,
       resendOtp,
       countdown: computed(() => countdown.value),
+      openLoader
     }
   },
 });

@@ -1,3 +1,12 @@
+ion-content,
+ion-header {
+    --background: whitesmoke;
+    /* --background: rgba(242, 243, 245, 0.911); */
+}
+
+
+/* --background: #2e4045ad; */
+
 .container {
     display: flex;
     flex-direction: column;
@@ -6,9 +15,24 @@
     height: 94%
 }
 
-ion-input.text-white {
-    --background: rgba(54, 54, 243, 0.986);
-    --border-color: rgb(54, 54, 243, 0.986);
+ion-input {
+    /* --background: rgba(54, 54, 243, 0.986); */
+    --highlight-color-focused: rgba(243, 61, 16, 0.986);
+    background: white;
+    border-color: rgba(243, 54, 54, 0.986);
+}
+
+ion-button {
+    --background: rgb(0, 136, 255);
+}
+
+ion-icon {
+    color: #2e4045ad;
+    font-size: 200px
+}
+
+.muted {
+    color: #2e4045ad;
 }
 
 .otp-input {
