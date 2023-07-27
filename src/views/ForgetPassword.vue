@@ -1,28 +1,27 @@
 <template>
   <ion-page>
-    <ion-header style="--background:rgb(23, 23, 245);" color='primary' class="ion-no-border">
-      <ion-toolbar style="--background:rgb(23, 23, 245);">
+    <ion-header class="ion-no-border">
+      <ion-toolbar>
         <ion-buttons slot="start">
-          <ion-back-button default-href="/login" class="text-white m-3" text=""></ion-back-button>
+          <ion-back-button default-href="/login" class="m-3" text=""></ion-back-button>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
 
     <ion-content class="ion-padding" fullscreen>
-      <div class="container text-white">
+      <div class="container">
         <h1><b>Forgot Password</b></h1>
-        <ion-text style="--color:rgba(238, 232, 232, 0.911);">Enter your email address</ion-text>
+        <ion-text>Enter your email address</ion-text>
         <form style="width: 100%;">
           <ion-input label="Email Address" label-placement="floating" mode="md" fill="outline" placeholder="Email Address"
-            type="email" class="ion-margin-bottom mt-4 text-white"
-            style="--border-color:rgb(54, 54, 243, 0.986);"></ion-input>
+            type="email" class="ion-margin-bottom mt-4"></ion-input>
 
-          <ion-button expand="full" class="tex" style="--background:rgb(32, 209, 32);"
-            size="large"><b>RESET</b></ion-button>
+          <ion-button expand="full" class="tex" size="large"><b>RESET</b></ion-button>
         </form>
       </div>
-      <div class="ion-text-center text-white" style="">
-        <ion-text>Don't have an account? <b @click="gotoPage('Register')">Sign up</b></ion-text>
+      <div class="ion-text-center">
+        <ion-text class="muted">Don't have an account? <b @click="gotoPage('Register')" class="text-dark">Sign
+            up</b></ion-text>
       </div>
 
     </ion-content>

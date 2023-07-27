@@ -1,5 +1,7 @@
 {
   "name": "GP Calculator",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "vue-vite"
 }

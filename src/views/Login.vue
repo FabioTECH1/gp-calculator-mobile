@@ -3,7 +3,7 @@
     <ion-content class="ion-padding" fullscreen>
       <div class="container">
         <div class="ion-text-center pb-4">
-          <ion-icon :icon="personOutline"></ion-icon>
+          <ion-icon :icon="personOutline" class="muted" />
         </div>
         <form style="width: 100%;" @submit.prevent="handleLogin()">
           <ion-input v-model="email_username" label="Email Address/Username" label-placement="floating" mode="md"
@@ -12,8 +12,8 @@
 
           <div class="password-input">
             <ion-input v-model="password" label="Password" label-placement="floating" mode="md" fill="outline"
-              placeholder="Password" :type="showPassword ? 'text' : 'password'" class="ion-margin-bottom"
-              required></ion-input>
+              placeholder="Password" :type="showPassword ? 'text' : 'password'" class="ion-margin-bottom" required
+              style=""></ion-input>
             <ion-icon :icon="showPassword ? eyeOutline : eyeOffOutline" class="eye-icon" style="font-size: 20px;"
               @click="toggleShowPassword"></ion-icon>
           </div>
@@ -37,7 +37,7 @@
       <ion-toast message="Something went wrong, check your internet connection" :is-open="offline"
         @didDismiss="dismissToast()" :duration="10000" position="bottom" color="danger" animated="true"></ion-toast> -->
 
-      <ion-toast :message="toastMessage" :is-open="showToast" @didDismiss="dismissToast()" :duration="1000"
+      <ion-toast :message="toastMessage" :is-open="showToast" @didDismiss="dismissToast()" :duration="2000"
         position="bottom" color="danger" animated="true"></ion-toast>
       <!-- 
       <ion-toast message="You are currently offline" :is-open="offline" @didDismiss="dismissToast()" :duration="3000"

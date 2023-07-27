@@ -5,12 +5,18 @@ import RegisterVue from '@/views/Register.vue';
 import ForgetPasswordVue from '@/views/ForgetPassword.vue';
 import HomeVue from '@/views/Home.vue';
 import VerifyVue from '@/views/Verify.vue';
+import FundWalletVue from '@/views/FundWallet.vue';
+import AccountInfoVue from '@/views/AccountInfo.vue';
+import FundByCardVue from '@/views/FundByCard.vue';
+import PayVue from '@/views/Pay.vue';
+import MoreVue from '@/views/More.vue';
+import TabVue from '@/views/myComponents/Tab.vue';
 import { isAuthenticated } from '@/services/AuthService';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/login'
+    redirect: '/auth/'
   },
   {
     path: '/login',
@@ -36,12 +42,50 @@ const routes: Array<RouteRecordRaw> = [
     component: ForgetPasswordVue,
     meta: { isGuest: true },
   },
+
   {
-    path: '/home',
-    name: 'Home',
-    component: HomeVue,
+    path: '/auth/',
+    name: 'Tabs',
+    component: TabVue,
     meta: { requiresAuth: true },
+    children: [
+      {
+        path: '/auth/',
+        redirect: 'auth/home'
+      },
+      {
+        path: 'home',
+        name: 'Home',
+        component: () => HomeVue,
+      },
+      {
+        path: 'fund',
+        name: 'FundWallet',
+        component: () => FundWalletVue,
+      },
+      {
+        path: 'pay',
+        name: 'Pay',
+        component: () => PayVue,
+      },
+      {
+        path: 'more',
+        name: 'More',
+        component: () => MoreVue,
+      },
+    ]
+  },
+  {
+    path: '/fund/card',
+    name: 'FundByCard',
+    component: () => FundByCardVue,
+  },
+  {
+    path: '/account-info',
+    name: 'AccountInfo',
+    component: () => AccountInfoVue,
   }
+
 ];
 
 const router = createRouter({
@@ -58,7 +102,7 @@ router.beforeEach((to, from, next) => {
     }
   } else if (to.matched.some((record) => record.meta.isGuest)) {
     if (isAuthenticated()) {
-      next({ name: 'Home' });
+      next({ name: 'Tabs' });
     } else {
       next();
     }

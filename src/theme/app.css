@@ -1,11 +1,8 @@
 ion-content,
-ion-header {
-    --background: whitesmoke;
+ion-toolbar {
+    --background: white;
     /* --background: rgba(242, 243, 245, 0.911); */
 }
-
-
-/* --background: #2e4045ad; */
 
 .container {
     display: flex;
@@ -15,24 +12,42 @@ ion-header {
     height: 94%
 }
 
+ion-back-button {
+    color: #2a2a72
+}
+
 ion-input {
     /* --background: rgba(54, 54, 243, 0.986); */
-    --highlight-color-focused: rgba(243, 61, 16, 0.986);
+    --highlight-color-focused: #2e4045ad !important;
     background: white;
-    border-color: rgba(243, 54, 54, 0.986);
+    --border-color: rgb(212, 212, 212) !important;
+    --border-width: 3px !important;
+    --border-radius: 10px !important;
+    --placeholder-color: #2e4045ad !important;
 }
 
 ion-button {
-    --background: rgb(0, 136, 255);
+    --background: #2a2a72
+}
+
+.balance-card {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(315deg, #009ffd 0%, #2a2a72 74%);
+    /* height: 100px; */
+    border-radius: 15px 15px 0 0;
+    color: white;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
 }
 
 ion-icon {
-    color: #2e4045ad;
+    /* color: #2a2a72; */
     font-size: 200px
 }
 
 .muted {
-    color: #2e4045ad;
+    color: #2e4045ad !important;
 }
 
 .otp-input {
@@ -43,14 +58,61 @@ ion-icon {
     margin: 0 5px;
     font-size: 30px;
     border-radius: 4px;
-    border: 1px solid rgb(54, 54, 243, 0.986);
+    border: 1px solid #2e4045ad;
     text-align: "center";
-    outline: rgb(54, 54, 243, 0.986);
+    outline: #2e4045ad;
     caret-color: transparent;
 }
 
 .otp-input.error {
     border: 1px solid red !important;
+}
+
+ion-icon.icon {
+    font-size: 28px;
+    color: #2a2a72;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90%;
+}
+
+span.footnote {
+    font-size: 10.5px;
+}
+
+.blurred {
+    filter: blur(4px);
+}
+
+.account-detail p {
+    background-color: #2e40451e;
+    text-transform: uppercase;
+}
+
+.account-detail b {
+    font-size: 13px;
+    padding: 0;
+    margin: 0;
+}
+
+
+/* Styles for the transactions section */
+
+.transactions-list {
+    height: 75%;
+    overflow-y: auto;
 }
 
 
