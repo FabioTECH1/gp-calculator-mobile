@@ -24,13 +24,16 @@ export async function login(inputValue: string, password: string): Promise<any> 
         const auth_token: string = response.data.token;
         const separatorIndex = auth_token.indexOf("|");
         const token = auth_token.substring(separatorIndex + 1);
-        const expiration = Date.now() + 3600 * 1000; // One hour expiration time
+        const expiration = Date.now() + 3600 * 10000; // 10 hour expiration time
         localStorage.setItem(TOKEN_KEY, token);
         localStorage.setItem(EXPIRATION_KEY, expiration.toString());
         return response.data;
     } catch (error: any) {
+        if (error.response == undefined) {
+            return 'Something went wrong, check your internet connection'
+        }
         console.error(error.response.data);
-        return error.response.data;
+        return error.response.data.message;
     }
 }
 

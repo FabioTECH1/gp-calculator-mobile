@@ -1,16 +1,24 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
-import LoginVue from '@/views/Login.vue';
-import RegisterVue from '@/views/Register.vue';
-import ForgetPasswordVue from '@/views/ForgetPassword.vue';
-import HomeVue from '@/views/Home.vue';
-import VerifyVue from '@/views/Verify.vue';
-import FundWalletVue from '@/views/FundWallet.vue';
-import AccountInfoVue from '@/views/AccountInfo.vue';
-import FundByCardVue from '@/views/FundByCard.vue';
-import PayVue from '@/views/Pay.vue';
-import MoreVue from '@/views/More.vue';
 import TabVue from '@/views/myComponents/Tab.vue';
+// Guest
+import LoginVue from '@/views/Guest/Login.vue';
+import RegisterVue from '@/views/Guest/Register.vue';
+import ForgetPasswordVue from '@/views/Guest/ForgetPassword.vue';
+import VerifyVue from '@/views/Guest/Verify.vue';
+// Home/Dashboard
+import HomeVue from '@/views/Home.vue';
+// Fund Wallet
+import FundWalletVue from '@/views/FundWallet.vue';
+import AccountInfoVue from '@/views/FundWallet/AccountInfo.vue';
+import FundByCardVue from '@/views/FundWallet/FundByCard.vue';
+// Pay for services
+import PayVue from '@/views/Pay.vue';
+import DataRechargeVue from '@/views/Pay/DataRecharge.vue';
+import AirtimeRechargeVue from '@/views/Pay/AirtimeRecharge.vue';
+//More
+import MoreVue from '@/views/More.vue';
+
 import { isAuthenticated } from '@/services/AuthService';
 
 const routes: Array<RouteRecordRaw> = [
@@ -78,12 +86,24 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/fund/card',
     name: 'FundByCard',
-    component: () => FundByCardVue,
+    component: FundByCardVue,
   },
   {
     path: '/account-info',
     name: 'AccountInfo',
-    component: () => AccountInfoVue,
+    component: AccountInfoVue,
+  },
+  {
+    path: '/data-recharge',
+    name: 'DataRecharge',
+    component: DataRechargeVue,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/airtime-recharge',
+    name: 'AirtimeRecharge',
+    component: AirtimeRechargeVue,
+    meta: { requiresAuth: true },
   }
 
 ];

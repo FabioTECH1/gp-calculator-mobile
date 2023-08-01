@@ -21,7 +21,7 @@
           <ion-button expand="full" class="mb-4" size="large" type="submit">
             <b>LOGIN</b>
           </ion-button>
-          <ion-loading :is-open="openLoader" message="Logging in.." duration="3000" spinner="circles"></ion-loading>
+          <ion-loading :is-open="openLoader" message="Logging in.." spinner="circles"></ion-loading>
         </form>
 
         <ion-text class="text-center ion-margin-bottom muted">
@@ -91,8 +91,10 @@ export default defineComponent({
         password.value = ''
         router.push({ name: 'Home' });
       } else {
-        toastMessage.value = response.message;
-        showToast.value = !response.success;
+        toastMessage.value = response;
+        // toastMessage.value = response.message;
+        // showToast.value = !response.success;
+        showToast.value = true;
       }
 
     };

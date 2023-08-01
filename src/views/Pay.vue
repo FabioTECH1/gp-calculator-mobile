@@ -8,7 +8,7 @@
 
     <ion-content class="ion-padding-top" fullscreen>
       <ion-list>
-        <div @click="">
+        <div @click="gotoPage('DataRecharge')">
           <ion-item class="ion-margin">
             <ion-icon :icon="wifi" class="icon" style="font-size: 40px;" />
             <div class="m-3">
@@ -18,7 +18,7 @@
             <ion-icon :icon="chevronForward" class="icon" slot="end" />
           </ion-item>
         </div>
-        <div @click="">
+        <div @click="gotoPage('AirtimeRecharge')">
           <ion-item class="ion-margin">
             <ion-icon :icon="call" class="icon" style="font-size: 40px;" />
             <div class="m-3">

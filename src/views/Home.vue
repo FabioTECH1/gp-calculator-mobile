@@ -21,9 +21,11 @@
         <br>
         <div class="ion-padding-start pt-4">
           <ion-text><b>NGN</b></ion-text>
-          <div :class="['fs-1 text-white', { 'blurred': isBalanceBlurred }]" @click="toggleBlur">
+          <div class="fs-1 text-white" @click="toggleBlur">
             <ion-text>
-              <b>{{ walletBalance ? walletBalance.toLocaleString() : '.........' }}</b>
+              <b v-if="!isBalanceBlurred">{{ walletBalance ? walletBalance.toLocaleString() : '.........' }}</b>
+              <b v-else>*********</b>
+              <!-- <b>{{ walletBalance ? walletBalance.toLocaleString() : '.........' }}</b> -->
             </ion-text>
           </div>
         </div>
